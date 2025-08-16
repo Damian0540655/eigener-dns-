@@ -1,0 +1,34 @@
+app = "mydns"   # kannst du bei Fly.io später ändern
+
+[build]
+  image = "adguard/adguardhome:latest"
+
+[env]
+  TZ = "Europe/Berlin"
+
+# DNS Port 53 (UDP)
+[[services]]
+  internal_port = 53
+  protocol = "udp"
+
+  [[services.ports]]
+    port = 53
+    handlers = ["udp"]
+
+# DNS Port 53 (TCP)
+[[services]]
+  internal_port = 53
+  protocol = "tcp"
+
+  [[services.ports]]
+    port = 53
+    handlers = ["tcp"]
+
+# Web-UI von AdGuard Home (Port 80)
+[[services]]
+  internal_port = 3000
+  protocol = "tcp"
+
+  [[services.ports]]
+    port = 80
+    handlers = ["http"]
